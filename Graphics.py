@@ -780,9 +780,9 @@ def phongConvert(img,zbuffer,v1,v2,v3,color,vn1,vn2,vn3):
                 for x in range(int(lx0),int(lx1)+1):
                     if y<=len(img) and y>0 and x<len(img) and x>=0 and int(zline*1000)/1000.0>=zbuffer[len(img)-y][x]:
                         zbuffer[len(img)-y][x]=zline
-                        norm=[ln0[0]+(dnorm[0]*(int(x)-int(lx0))),
+                        norm=normalize([ln0[0]+(dnorm[0]*(int(x)-int(lx0))),
                               ln0[1]+(dnorm[1]*(int(x)-int(lx0))),
-                              ln0[2]+(dnorm[2]*(int(x)-int(lx0)))]
+                              ln0[2]+(dnorm[2]*(int(x)-int(lx0)))])
                         Ia=[areflect[0]*ambient[0],areflect[1]*ambient[1],areflect[2]*ambient[2]]
                         Id=[0,0,0]
                         Is=[0,0,0]
@@ -819,7 +819,7 @@ def phongConvert(img,zbuffer,v1,v2,v3,color,vn1,vn2,vn3):
             else:
                 if z1>z0 and y<=len(img) and y>0 and x1<len(img) and x1>=0 and int(z1*1000)/1000.0>=zbuffer[len(img)-y][int(x1)]:
                     zbuffer[len(img)-y][int(x1)]=z1
-                    norm=n1[:]
+                    norm=normalize(n1[:])
                     Ia=[areflect[0]*ambient[0],areflect[1]*ambient[1],areflect[2]*ambient[2]]
                     Id=[0,0,0]
                     Is=[0,0,0]
@@ -854,7 +854,7 @@ def phongConvert(img,zbuffer,v1,v2,v3,color,vn1,vn2,vn3):
                     img[len(img)-y][int(x1)]=color[:]
                 elif y<=len(img) and y>0 and x0<len(img) and x0>=0 and int(z0*1000)/1000.0>=zbuffer[len(img)-y][int(x0)]:
                     zbuffer[len(img)-y][int(x1)]=z1
-                    norm=n0[:]
+                    norm=normalize(n0[:])
                     Ia=[areflect[0]*ambient[0],areflect[1]*ambient[1],areflect[2]*ambient[2]]
                     Id=[0,0,0]
                     Is=[0,0,0]
@@ -935,9 +935,9 @@ def phongConvert(img,zbuffer,v1,v2,v3,color,vn1,vn2,vn3):
                 for x in range(int(lx0),int(lx1)+1):
                     if y<=len(img) and y>0 and x<len(img) and x>=0 and int(zline*1000)/1000.0>=zbuffer[len(img)-y][x]:
                         zbuffer[len(img)-y][x]=zline
-                        norm=[ln0[0]+(dnorm[0]*(int(x)-int(lx0))),
+                        norm=normalize([ln0[0]+(dnorm[0]*(int(x)-int(lx0))),
                               ln0[1]+(dnorm[1]*(int(x)-int(lx0))),
-                              ln0[2]+(dnorm[2]*(int(x)-int(lx0)))]
+                              ln0[2]+(dnorm[2]*(int(x)-int(lx0)))])
                         Ia=[areflect[0]*ambient[0],areflect[1]*ambient[1],areflect[2]*ambient[2]]
                         Id=[0,0,0]
                         Is=[0,0,0]
@@ -974,7 +974,7 @@ def phongConvert(img,zbuffer,v1,v2,v3,color,vn1,vn2,vn3):
             else:
                 if z1>z0 and y<=len(img) and y>0 and x1<len(img) and x1>=0 and int(z1*1000)/1000.0>=zbuffer[len(img)-y][int(x1)]:
                     zbuffer[len(img)-y][int(x1)]=z1
-                    norm=n1[:]
+                    norm=normalize(n1[:])
                     Ia=[areflect[0]*ambient[0],areflect[1]*ambient[1],areflect[2]*ambient[2]]
                     Id=[0,0,0]
                     Is=[0,0,0]
@@ -1009,7 +1009,7 @@ def phongConvert(img,zbuffer,v1,v2,v3,color,vn1,vn2,vn3):
                     img[len(img)-y][int(x1)]=color[:]
                 elif y<=len(img) and y>0 and x0<len(img) and x0>=0 and int(z0*1000)/1000.0>=zbuffer[len(img)-y][int(x0)]:
                     zbuffer[len(img)-y][int(x1)]=z1
-                    norm=n0[:]
+                    norm=normalize(n0[:])
                     Ia=[areflect[0]*ambient[0],areflect[1]*ambient[1],areflect[2]*ambient[2]]
                     Id=[0,0,0]
                     Is=[0,0,0]
