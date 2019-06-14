@@ -1,0 +1,366 @@
+shading gouraud
+light light1 0 1 0 255 255 255
+light light2 0 -1 0 255 0 255
+constants purple 0.3 0.8 0.2 0.0 0.0 0.0 0.3 0.8 0.2
+constants skin 0.44725 0.95164 0.828281 0.3995 0.80648 0.755802 0.2745 0.42648 0.536065
+constants yellow 0.3 0.8 0.5 0.3 0.8 0.5 0 0 0
+constants dark_blue 0 0 0 0 0 0 0.2 0.5 0.2
+constants brown 0.2125 0.714 0.393548 0.1275 0.4284 0.2719 0.054 0.1814 0.166712
+constants white 0.4 0.8 0.8 0.4 0.8 0.8 0.4 0.8 0.8
+constants pink 0.3 0.8 0.2 0 0 0 0.2 0.5 0.1
+constants hair 0.1 0.1 0.2 0.1 0.1 0.1 0.1 0.1 0.2
+constants pureWhite 1 1 1 1 1 1 1 1 1
+constants pureBlack 0 0 0 0 0 0 0 0 0
+//-----TORSO-----
+push
+move 250 250 0
+rotate x 15
+rotate y -15
+push
+move 0 50 0
+scale 2 0.5 0.5
+sphere purple 0 0 0 50
+pop
+box dark_blue -50 35 20 100 100 40
+box skin -7 100 7 14 60 14
+//-----RIGHT ARM-----
+//lower
+push
+move 100 50 0
+rotate x 60
+rotate z 30
+box purple -10 5 5 125 10 10
+//upper
+push
+move 120 0 0
+rotate z 90
+box purple -5 5 5 125 10 10
+//hand
+push
+move 125 0 0
+rotate x -90
+rotate y 90
+sphere 0 0 0 20
+move 0 50 0
+scale 3 3 3
+mesh purple :racket.obj
+pop
+pop
+pop
+//-----LEFT ARM-----
+//lower
+push
+rotate y 180
+move 100 50 0
+rotate x 240
+rotate z 30
+box purple -10 5 5 125 10 10
+//upper
+push
+move 120 0 0
+rotate z 90
+box purple -5 5 5 125 10 10
+//hand
+push
+move 125 0 0
+sphere 0 0 0 20
+move 0 0 100
+rotate y -30
+sphere pureWhite 0 0 0 40
+torus pureBlack 0 -10 0 5 40
+rotate x 90
+torus pureBlack 0 -10 0 10 40
+pop
+pop
+pop
+//-----RIGHT LEG-----
+//lower
+push
+move 40 -70 0
+scale 1.25 1.25 1.25
+rotate x -45
+box dark_blue -5 5 5 10 100 10
+//upper
+push
+move 0 -95 0
+rotate x 90
+box dark_blue -5 5 5 10 100 10
+//foot
+push
+move 0 -100 0
+box brown -20 5 30 40 20 40
+pop
+pop
+pop
+//-----LEFT LEG-----
+//lower
+push
+move -40 -70 0
+scale 1.5 1.5 1.5
+rotate x -110
+box dark_blue -5 5 5 10 100 10
+//upper
+push
+move 0 -95 0
+rotate x 125
+box dark_blue -5 5 5 10 100 10
+//foot
+push
+move 0 -100 0
+box brown -20 5 30 40 20 40
+pop
+pop
+pop
+//-----HEAD-----
+push
+move 0 160 30
+scale 0.5 0.5 0.5
+//chin
+set_default skin
+triangle -20 -184 0 -10 -174 10 -50 -84 0
+triangle 20 -184 0 50 -84 0 10 -174 10
+triangle -20 -184 0 0 -184 0 -10 -174 10
+triangle 20 -184 0 10 -174 10 0 -184 0
+triangle -10 -174 10 0 -184 0 10 -174 10
+triangle -10 -174 10 10 -174 10 0 -84 0
+triangle -10 -174 10 0 -84 0 -50 -84 0
+triangle 0 -84 0 10 -174 10 50 -84 0
+triangle -20 -184 0 -50 -84 0 -50 -84 -100
+triangle 20 -184 0 50 -84 -100 50 -84 0
+triangle 20 -184 0 -50 -84 -100 50 -84 -100
+triangle -20 -184 0 -50 -84 -100 20 -184 0
+//mouth
+set_default skin
+triangle -50 -84 0 -65 -24 0 -60 -89 0
+triangle 50 -84 0 60 -89 0 65 -24 0
+triangle -50 -84 0 50 -84 0 0 -33 0
+triangle -50 -84 0 0 -33 0 -65 -24 0
+triangle 0 -33 0 50 -84 0 65 -24 0
+push
+move 0 0 -100
+triangle -50 -84 0 -60 -89 0 -65 -24 0
+triangle 50 -84 0 65 -24 0 60 -89 0
+triangle -50 -84 0 0 -33 0 50 -84 0
+triangle -50 -84 0 -65 -24 0 0 -33 0
+triangle 0 -33 0 65 -24 0 50 -84 0
+pop
+triangle -50 -84 0 -60 -89 0 -60 -89 -100
+triangle -50 -84 0 -60 -89 -100 -50 -84 -100
+triangle 50 -84 0 60 -89 -100 60 -89 0
+triangle 50 -84 0 50 -84 -100 60 -89 -100
+triangle -60 -89 0 -65 -24 0 -65 -24 -100
+triangle -60 -89 0 -65 -24 -100 -60 -89 -100
+triangle 60 -89 0 65 -24 -100 65 -24 0
+triangle 60 -89 0 60 -89 -100 65 -24 -100
+//teeth
+set_default white
+push
+move 0 0 20
+triangle -44 -66 0 -27 -47 0 -46 -47 0
+triangle -47 -26 0 -46 -47 0 -27 -47 0
+triangle -44 -66 0 -26 -66 0 -27 -47 0
+triangle -47 -26 0 -27 -47 0 -28 -29 0
+triangle -28 -29 0 -27 -47 0 -11 -31 0
+triangle -27 -47 0 -26 -66 0 -9 -66 0
+triangle -27 -47 0 -10 -47 0 -11 -31 0
+triangle -27 -47 0 -9 -66 0 -10 -47 0
+triangle -11 -31 0 -10 -47 0 11 -31 0
+triangle -10 -47 0 10 -47 0 11 -31 0
+triangle -10 -47 0 -9 -66 0 10 -47 0
+triangle -9 -66 0 9 -66 0 10 -47 0
+triangle 44 -66 0 46 -47 0 27 -47 0
+triangle 47 -26 0 27 -47 0 46 -47 0
+triangle 44 -66 0 27 -47 0 26 -66 0
+triangle 47 -26 0 28 -29 0 27 -47 0
+triangle 28 -29 0 11 -31 0 27 -47 0
+triangle 27 -47 0 9 -66 0 26 -66 0
+triangle 27 -47 0 11 -31 0 10 -47 0
+triangle 27 -47 0 10 -47 0 9 -66 0
+pop
+//nose
+set_default pink
+triangle -10 -9 0 0 -39 0 10 -9 0
+triangle -10 -9 0 0 31 0 -20 1 0
+triangle 10 -9 0 20 1 0 0 31 0
+triangle -10 -9 0 10 -9 0 0 31 0
+triangle -10 -9 30 -10 -9 0 0 -39 0
+triangle -10 -9 30 0 -39 0 0 -39 30
+triangle 10 -9 0 10 -9 30 0 -39 0
+triangle 10 -9 30 0 -39 30 0 -39 0
+triangle -10 -9 30 -20 1 0 -10 -9 0
+triangle -10 -9 30 -20 1 30 -20 1 0
+triangle 10 -9 0 20 1 0 10 -9 30
+triangle 10 -9 30 20 1 0 20 1 30
+triangle -20 1 30 0 31 30 0 31 0
+triangle -20 1 30 0 31 0 -20 1 0
+triangle 20 1 30 0 31 0 0 31 30
+triangle 20 1 0 0 31 0 20 1 30
+triangle 0 -39 30 0 -59 70 -10 -9 30
+triangle 0 -59 70 -20 1 30 -10 -9 30
+triangle 0 -59 70 0 31 30 -20 1 30
+triangle 0 -39 30 10 -9 30 0 -59 70
+triangle 0 -59 70 10 -9 30 20 1 30
+triangle 0 -59 70 20 1 30 0 31 30
+//moustache
+set_default hair
+triangle -20 1 0 -10 -9 0 -2 -33 0
+triangle -20 1 0 -2 -33 0 -120 16 0
+triangle 20 1 0 2 -33 0 10 -9 0
+triangle 20 1 0 120 16 0 2 -33 0
+triangle -2 -33 0 -150 -10 0 -120 16 0
+triangle 2 -33 0 120 16 0 150 -10 0
+triangle -160 136 0 -120 16 0 -150 -10 0
+triangle 160 136 0 150 -10 0 120 16 0
+triangle -20 1 20 -2 -33 20 -10 -9 20
+triangle -20 1 20 -120 16 20 -2 -33 20
+triangle 20 1 20 10 -9 20 2 -33 20
+triangle 20 1 20 2 -33 20 120 16 20
+triangle -2 -33 20 -120 16 20 -150 -10 20
+triangle 2 -33 20 150 -10 20 120 16 20
+triangle -160 136 20 -150 -10 20 -120 16 20
+triangle 160 136 20 120 16 20 150 -10 20
+triangle -20 1 20 -20 1 0 -120 16 20
+triangle -20 1 0 -120 16 0 -120 16 20
+triangle 20 1 20 120 16 20 20 1 0
+triangle 20 1 0 120 16 20 120 16 0
+triangle -2 -33 20 -150 -10 20 -150 -10 0
+triangle -2 -33 20 -150 -10 0 -2 -33 0
+triangle 2 -33 20 150 -10 0 150 -10 20
+triangle 2 -33 20 2 -33 0 150 -10 0
+triangle -150 -10 0 -150 -10 20 -160 136 20
+triangle -150 -10 0 -160 136 20 -160 136 0
+triangle 150 -10 0 160 136 20 150 -10 20
+triangle 150 -10 0 160 136 0 160 136 20
+triangle -120 16 20 -120 16 0 -160 136 0
+triangle -120 16 20 -160 136 0 -160 136 20
+triangle 120 16 20 160 136 0 120 16 0
+triangle 120 16 20 160 136 20 160 136 0
+//upper face
+set_default skin
+triangle -75 10 0 -20 1 0 -80 86 0
+triangle 75 10 0 80 86 0 20 1 0
+triangle -20 1 0 20 1 0 0 76 0
+triangle -20 1 0 0 76 0 -80 86 0
+triangle 20 1 0 80 86 0 0 76 0
+triangle -75 -10 0 -80 86 0 -80 86 -100
+triangle -75 -10 0 -80 86 -100 -75 -10 -100
+triangle 75 -10 0 80 86 -100 80 86 0
+triangle 75 -10 0 75 -10 -100 80 86 -100
+triangle -65 -24 0 -75 -10 0 -75 -10 -100
+triangle -65 -24 0 -75 -10 -100 -65 -24 -100
+triangle 65 -24 0 75 -10 0 75 -10 -100
+triangle 65 -24 0 75 -10 -100 65 -24 -100
+//eyes
+push
+move 0 0 20
+set_default 0 0 0 0 0 0 0 0 0
+triangle -30 16 0 -15 36 0 -30 43 0
+triangle -30 16 0 -15 16 0 -15 36 0
+triangle 30 16 0 30 43 0 15 36 0
+triangle 30 16 0 15 36 0 15 16 0
+set_default white
+triangle -30 16 0 -30 43 0 -65 61 0
+triangle -30 16 0 -65 61 0 -65 16 0
+triangle 30 16 0 65 61 0 30 43 0
+triangle 30 16 0 65 16 0 65 61 0
+//eyebrows
+set_default hair
+triangle -75 66 0 -15 36 0 -70 81 0
+triangle -15 36 0 -10 51 0 -70 81 0
+triangle 75 66 0 70 81 0 15 36 0
+triangle 70 81 0 10 51 0 15 36 0
+pop
+//ears
+set_default skin
+triangle -79 61 -20 -125 96 -20 -76 21 -20
+triangle -79 61 -20 -79 61 -50 -125 96 -20
+triangle -76 21 -20 -125 96 -20 -79 61 -50
+triangle 79 61 -20 76 21 -20 125 96 -20
+triangle 79 61 -20 125 96 -20 79 61 -50
+triangle 76 21 -20 79 61 -50 125 96 -20
+//hat
+set_default purple
+triangle -80 86 0 -30 76 0 -30 96 0
+triangle 80 86 0 30 96 0 30 76 0
+triangle -30 96 0 30 76 0 30 96 0
+triangle -30 76 0 30 76 0 -30 96 0
+triangle -80 86 0 -30 96 0 -100 106 0
+triangle 80 86 0 100 106 0 30 96 0
+triangle -100 106 0 -30 96 0 -100 126 0
+triangle 100 106 0 100 126 0 30 96 0
+triangle -100 126 0 -30 96 0 -50 176 0
+triangle 100 126 0 50 176 0 30 96 0
+triangle -50 176 0 30 96 0 50 176 0
+triangle -50 176 0 -30 96 0 30 96 0
+triangle -80 86 30 -30 76 50 -30 96 50
+triangle 80 86 30 30 96 50 30 76 50
+triangle -30 96 50 30 76 50 30 96 50
+triangle -30 76 50 30 76 50 -30 96 50
+triangle -80 86 30 -30 76 0 -30 76 50
+triangle -80 86 30 -80 86 0 -30 76 0
+triangle 80 86 30 30 76 50 30 76 0
+triangle 80 86 30 30 76 0 80 86 0
+triangle 80 86 30 30 96 0 30 96 50
+triangle 80 86 30 80 86 0 30 96 0
+triangle -80 86 30 -30 96 50 -30 96 0
+triangle -80 86 30 -30 96 0 -80 86 0
+triangle -30 96 50 30 96 0 -30 96 0
+triangle -30 96 50 30 96 50 30 96 0
+triangle -30 76 50 -30 76 0 30 76 0
+triangle -30 76 50 30 76 0 30 76 50
+push
+move 0 0 -120
+triangle -80 86 0 -30 96 0 -30 76 0
+triangle 80 86 0 30 76 0 30 96 0
+triangle -30 96 0 30 96 0 30 76 0
+triangle -30 76 0 -30 96 0 30 76 0
+triangle -80 86 0 -100 106 0 -30 96 0
+triangle 80 86 0 30 96 0 100 106 0
+triangle -100 106 0 -100 126 0 -30 96 0
+triangle 100 106 0 30 96 0 100 126 0
+triangle -100 126 0 -50 176 0 -30 96 0
+triangle 100 126 0 30 96 0 50 176 0
+triangle -50 176 0 50 176 0 30 96 0
+triangle -50 176 0 30 96 0 -30 96 0
+pop
+triangle -80 86 0 -100 106 0 -100 106 -120
+triangle -80 86 0 -100 106 -120 -80 86 -120
+triangle 80 86 0 100 106 -120 100 106 0
+triangle 80 86 0 80 86 -120 100 106 -120
+triangle -100 106 0 -100 126 0 -100 126 -120
+triangle -100 106 0 -100 126 -120 -100 106 -120
+triangle 100 106 0 100 126 -120 100 126 0
+triangle 100 106 0 100 106 -120 100 126 -120
+triangle -100 126 0 -50 176 0 -50 176 -120
+triangle -100 126 0 -50 176 -120 -100 126 -120
+triangle 100 126 0 50 176 -120 50 176 0
+triangle 100 126 0 100 126 -120 50 176 -120
+triangle -50 176 0 50 176 0 50 176 -120
+triangle -50 176 0 50 176 -120 -50 176 -120
+//hair
+box hair -80 86 -100 160 125 18
+//circle
+set_default white
+push
+move 0 0 20
+triangle -20 96 0 20 96 0 0 119 0
+triangle -20 96 0 0 119 0 -30 106 0
+triangle 20 96 0 30 106 0 0 119 0
+triangle -30 106 0 0 119 0 -30 126 0
+triangle 30 106 0 30 126 0 0 119 0
+triangle -30 126 0 0 119 0 -15 141 0
+triangle 30 126 0 15 141 0 0 119 0
+triangle -15 141 0 0 119 0 15 141 0
+//L
+set_default yellow
+push
+move 0 0 10
+triangle -13 99 0 -3 99 0 -13 131 0
+triangle -3 99 0 -3 121 0 -13 131 0
+triangle -13 131 0 13 121 0 13 131 0
+triangle -3 121 0 13 121 0 -13 131 0
+pop
+pop
+//-----------------
+display
+save Waluigi.png

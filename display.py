@@ -1,0 +1,80 @@
+from subprocess import Popen, PIPE
+import os
+from os import remove
+from platform import system
+
+#constants
+XRES = 500
+YRES = 500
+MAX_COLOR = 255
+RED = 0
+GREEN = 1
+BLUE = 2
+
+DEFAULT_COLOR = [0, 0, 0]
+
+def new_screen( width = XRES, height = YRES ):
+    screen = []
+    for y in range( height ):
+        row = []
+        screen.append( row )
+        for x in range( width ):
+            screen[y].append( DEFAULT_COLOR[:] )
+    return screen
+
+def plot( screen, color, x, y ):
+    newy = YRES - 1 - y
+    if ( x >= 0 and x < XRES and newy >= 0 and newy < YRES ):
+        screen[newy][x] = color[:]
+
+def clear_screen( screen ):
+    for y in range( len(screen) ):
+        for x in range( len(screen[y]) ):
+            screen[y][x] = DEFAULT_COLOR[:]
+
+def save_ppm( screen, fname ):
+    ppm_name = fname[:fname.find('.')] + '.ppm'
+    f = open( ppm_name, 'w' )
+    ppm = 'P3\n' + str(len(screen[0])) +' '+ str(len(screen)) +' '+ str(MAX_COLOR) +'\n'
+    for y in range( len(screen) ):
+        row = ''
+        for x in range( len(screen[y]) ):
+            pixel = screen[y][x]
+            row+= str( pixel[ RED ] ) + ' '
+            row+= str( pixel[ GREEN ] ) + ' '
+            row+= str( pixel[ BLUE ] ) + ' '
+        ppm+= row + '\n'
+    f.write( ppm )
+    f.close()
+
+def save_extension( screen, fname ):
+    ppm_name = fname[:fname.find('.')] + '.ppm'
+    save_ppm( screen, ppm_name )
+    if system() == 'Windows':
+        p = Popen( ['magick', 'convert', ppm_name, fname ], stdin=PIPE, stdout = PIPE )
+    else:
+        p = Popen( ['convert', ppm_name, fname ], stdin=PIPE, stdout = PIPE )
+    p.communicate()
+    remove(ppm_name)
+
+def display( screen ):
+    ppm_name = 'pic.ppm'
+    save_ppm( screen, ppm_name )
+    if system() == 'Windows':
+        p = Popen( ['magick', 'display', ppm_name], stdin=PIPE, stdout = PIPE )
+    else:
+        p = Popen( ['display', ppm_name], stdin=PIPE, stdout = PIPE )
+    p.communicate()
+    remove(ppm_name)
+
+def make_animation( name ):
+    name_arg = 'anim/' + name + '*'
+    name = name + '.gif'
+    print('Saving animation as ' + name)
+    if system()=='Windows':
+        p=Popen(['magick', 'convert', '-delay', '1.7', name_arg, name], stdin=PIPE, stdout = PIPE)
+        p.communicate()
+    else:
+        f = os.fork()
+        if f == 0:
+            os.execlp('convert', 'convert', '-delay', '1.7', name_arg, name)
